@@ -1,6 +1,6 @@
 ﻿using SistemaCRUD.API.DTOS;
 
-namespace SistemaCRUD.API.Service.Interface
+namespace SistemaCRUD.API.Service.Estado.Interface
 {
     public interface IServiceEstado
     {

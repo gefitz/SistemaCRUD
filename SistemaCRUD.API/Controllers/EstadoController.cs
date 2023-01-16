@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaCRUD.API.DTOS;
-using SistemaCRUD.API.Service.Interface;
+using SistemaCRUD.API.Service.Estado.Interface;
 
 namespace SistemaCRUD.API.Controllers
 {

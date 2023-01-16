@@ -8,10 +8,10 @@ using SistemaCRUD.API.Repositorio.Cidade;
 using SistemaCRUD.API.Repositorio.Cidade.Interface;
 using SistemaCRUD.API.Repositorio.Estado;
 using SistemaCRUD.API.Repositorio.Estado.Interface;
-using SistemaCRUD.API.Service;
 using SistemaCRUD.API.Service.Cidade;
 using SistemaCRUD.API.Service.Cidade.Interface;
-using SistemaCRUD.API.Service.Interface;
+using SistemaCRUD.API.Service.Estado;
+using SistemaCRUD.API.Service.Estado.Interface;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 

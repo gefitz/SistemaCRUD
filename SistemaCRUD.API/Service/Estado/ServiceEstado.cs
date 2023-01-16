@@ -2,9 +2,9 @@
 using SistemaCRUD.API.DTOS;
 using SistemaCRUD.API.Models;
 using SistemaCRUD.API.Repositorio.Estado.Interface;
-using SistemaCRUD.API.Service.Interface;
+using SistemaCRUD.API.Service.Estado.Interface;
 
-namespace SistemaCRUD.API.Service
+namespace SistemaCRUD.API.Service.Estado
 {
     public class ServiceEstado : IServiceEstado
     {
@@ -35,7 +35,7 @@ namespace SistemaCRUD.API.Service
         public async Task<bool> Insert(EstadoDTO estado)
         {
             var estadoModel = _mapper.Map<EstadoModel>(estado);
-             return await _repositorio.Insert(estadoModel);
+            return await _repositorio.Insert(estadoModel);
         }
 
         public async Task Update(EstadoDTO estado)

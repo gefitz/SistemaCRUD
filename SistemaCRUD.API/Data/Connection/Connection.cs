@@ -26,7 +26,7 @@ namespace SistemaCRUD.API.Data.Connection
 
         public SqlConnection Open()
         {
-            if (_connection != null)
+            if (_connection.State == System.Data.ConnectionState.Closed )
             {
                 _connection.ConnectionString= _connectionString;
                 _connection.Open();
