@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Empresa\" />
     <Folder Include="Data\Produto\" />
     <Folder Include="Data\TipoProduto\" />
+    <Folder Include="Repositorio\NovaPasta\" />
   </ItemGroup>
 
 </Project>

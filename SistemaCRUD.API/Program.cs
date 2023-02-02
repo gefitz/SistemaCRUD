@@ -1,20 +1,27 @@
+#region using
 using SistemaCRUD.API.Data.Cidade;
 using SistemaCRUD.API.Data.Cidade.Interface;
 using SistemaCRUD.API.Data.Connection;
 using SistemaCRUD.API.Data.Connection.Interface;
+using SistemaCRUD.API.Data.Empresa;
+using SistemaCRUD.API.Data.Empresa.Interface;
 using SistemaCRUD.API.Data.Estado;
 using SistemaCRUD.API.Data.Estado.Interfaces;
 using SistemaCRUD.API.Repositorio.Cidade;
 using SistemaCRUD.API.Repositorio.Cidade.Interface;
+using SistemaCRUD.API.Repositorio.Empresa;
+using SistemaCRUD.API.Repositorio.Empresa.Interface;
 using SistemaCRUD.API.Repositorio.Estado;
 using SistemaCRUD.API.Repositorio.Estado.Interface;
 using SistemaCRUD.API.Service.Cidade;
 using SistemaCRUD.API.Service.Cidade.Interface;
+using SistemaCRUD.API.Service.Empresa;
+using SistemaCRUD.API.Service.Empresa.Interface;
 using SistemaCRUD.API.Service.Estado;
 using SistemaCRUD.API.Service.Estado.Interface;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
-
+#endregion
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -32,6 +39,12 @@ builder.Services.AddScoped<IServiceEstado, ServiceEstado>();
 builder.Services.AddScoped<ICidade, CidadeCommands>();
 builder.Services.AddScoped<IRepositorioCidade, RepositorioCidade>();
 builder.Services.AddScoped<IServiceCidade, ServiceCidade>();
+#endregion
+
+#region Empresa
+builder.Services.AddScoped<IEmpresa, EmpresaCommands>();
+builder.Services.AddScoped<IRepositorioEmpresa, RepositorioEmpresa>();
+builder.Services.AddScoped<IServiceEmpresa, ServiceEmpresa>();
 #endregion
 
 #endregion
