@@ -7,18 +7,24 @@ using SistemaCRUD.API.Data.Empresa;
 using SistemaCRUD.API.Data.Empresa.Interface;
 using SistemaCRUD.API.Data.Estado;
 using SistemaCRUD.API.Data.Estado.Interfaces;
+using SistemaCRUD.API.Data.Produto;
+using SistemaCRUD.API.Data.Produto.Interfaces;
 using SistemaCRUD.API.Repositorio.Cidade;
 using SistemaCRUD.API.Repositorio.Cidade.Interface;
 using SistemaCRUD.API.Repositorio.Empresa;
 using SistemaCRUD.API.Repositorio.Empresa.Interface;
 using SistemaCRUD.API.Repositorio.Estado;
 using SistemaCRUD.API.Repositorio.Estado.Interface;
+using SistemaCRUD.API.Repositorio.Produto;
+using SistemaCRUD.API.Repositorio.Produto.Interfaces;
 using SistemaCRUD.API.Service.Cidade;
 using SistemaCRUD.API.Service.Cidade.Interface;
 using SistemaCRUD.API.Service.Empresa;
 using SistemaCRUD.API.Service.Empresa.Interface;
 using SistemaCRUD.API.Service.Estado;
 using SistemaCRUD.API.Service.Estado.Interface;
+using SistemaCRUD.API.Service.Produto;
+using SistemaCRUD.API.Service.Produto.Interface;
 using System.Data.SqlClient;
 using System.Text.Json.Serialization;
 #endregion
@@ -45,6 +51,12 @@ builder.Services.AddScoped<IServiceCidade, ServiceCidade>();
 builder.Services.AddScoped<IEmpresa, EmpresaCommands>();
 builder.Services.AddScoped<IRepositorioEmpresa, RepositorioEmpresa>();
 builder.Services.AddScoped<IServiceEmpresa, ServiceEmpresa>();
+#endregion
+
+#region Produto
+builder.Services.AddScoped<IProduto, ProdutoCommands>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
 #endregion
 
 #endregion

@@ -52,7 +52,7 @@ namespace SistemaCRUD.API.Repositorio.Empresa
             var empresaSemUpdate = await SelectId(empresa.IdEmpresa);
             VereficaModificacao.VereficaModificacao verefica = new VereficaModificacao.VereficaModificacao();
             verefica.empresaSemUpdate = empresaSemUpdate;
-           var coluna = verefica.Verefica(empresa);
+           var coluna = verefica.VereficaEmpresa(empresa);
             await _commands.Update(empresa.IdEmpresa, coluna, verefica.modificacao, verefica.tipoColuna);
 
             return true;

@@ -8,9 +8,10 @@
         public string Imagem { get; set; }
         public EmpresaModel Empresa { get; set; }
         public TipoProdutoModel Tipo { get; set; }
-        public float Preco { get; set; }
-        public float Custo { get; set; }
+        public decimal Preco { get; set; }
+        public decimal Custo { get; set; }
         public int Porcetagem { get; set; }
+        public int Quantidade { get; set; }
 
     }
 }

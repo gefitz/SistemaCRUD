@@ -13,10 +13,4 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Produto\" />
-    <Folder Include="Data\TipoProduto\" />
-    <Folder Include="Repositorio\NovaPasta\" />
-  </ItemGroup>
-
 </Project>
