@@ -1,4 +1,5 @@
 ﻿using SistemaCRUD.API.Data.Cidade.Interface;
+using SistemaCRUD.API.Data.Empresa.Interface;
 using SistemaCRUD.API.Data.Produto.Interfaces;
 using SistemaCRUD.API.Models;
 using SistemaCRUD.API.Repositorio.Empresa.Interface;
@@ -52,8 +53,18 @@ namespace SistemaCRUD.API.Repositorio.Produto
             var produtoSemUpdate = await SelectId(produto.IdProduto);
             VereficaModificacao.VereficaModificacao verefica = new VereficaModificacao.VereficaModificacao();
             verefica.produtoSemUpdate = produtoSemUpdate;
-            var coluna = verefica.VereficaProduto(produto);
-            await _commands.Update(produto.IdProduto, coluna, verefica.modificacao, verefica.tipoColuna);
+            verefica.VereficaProduto(produto);
+            if (verefica.coluna.Count > 1)
+            {
+                for (int i = 0; i < verefica.coluna.Count; i++)
+                {
+                    await _commands.Update(produto.IdProduto, verefica.coluna[i], verefica.modificacao[i], verefica.tipoColuna[i]);
+                }
+            }
+            if(verefica.coluna.Count == 1)
+            {
+                await _commands.Update(produto.IdProduto, verefica.coluna[0], verefica.modificacao[0], verefica.tipoColuna[0]);
+            }
 
             return true;
 

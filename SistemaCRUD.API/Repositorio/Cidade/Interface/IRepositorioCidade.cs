@@ -4,10 +4,8 @@ namespace SistemaCRUD.API.Repositorio.Cidade.Interface
 {
     public interface IRepositorioCidade
     {
-        public Task<bool> Insert(CidadeModel cidade);
-        public Task<IEnumerable<CidadeModel>> SelectAll();
+        public Task<IEnumerable<CidadeModel>> SelectAll(int id);
         public Task<CidadeModel> SelectId(int id);
-        public Task Update(CidadeModel cidade);
-        public Task Delete (int id);
+        public Task<IEnumerable<CidadeModel>>SelectIdEstado(int id);
     }
 }

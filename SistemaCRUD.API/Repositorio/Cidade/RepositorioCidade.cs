@@ -1,8 +1,12 @@
-﻿using SistemaCRUD.API.Data.Cidade.Interface;
+﻿using Newtonsoft.Json;
+using SistemaCRUD.API.Data.Cidade.Interface;
 using SistemaCRUD.API.Data.Estado.Interfaces;
 using SistemaCRUD.API.Models;
 using SistemaCRUD.API.Repositorio.Cidade.Interface;
 using SistemaCRUD.API.Repositorio.Estado.Interface;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace SistemaCRUD.API.Repositorio.Cidade
 {
@@ -14,30 +18,22 @@ namespace SistemaCRUD.API.Repositorio.Cidade
         public RepositorioCidade(ICidade commands, IRepositorioEstado estado)
         {
             _commands = commands;
-            _estado = estado;          
+            _estado = estado;
         }
+  
 
-        public async Task Delete(int id)
+        public async Task<IEnumerable<CidadeModel>> SelectAll(int id)
         {
-            await _commands.Delete(id);
-        }
+            
 
-        public async Task<bool> Insert(CidadeModel cidade)
-        {
-            await _commands.Insert(cidade);
-            return true;
-        }
-
-        public async Task<IEnumerable<CidadeModel>> SelectAll()
-        {
-            List<CidadeModel> listCidades = new List<CidadeModel> (await _commands.SelectAll());
+            List<CidadeModel> listCidades = new List<CidadeModel>(await _commands.SelectAll(id));
             for (int i = 0; i < listCidades.Count; i++)
             {
                 var estado = await _estado.GetId(listCidades[i].Estado.IdEstado);
                 listCidades[i].Estado = estado;
             }
             return listCidades;
-            
+
         }
 
         public async Task<CidadeModel> SelectId(int id)
@@ -47,17 +43,10 @@ namespace SistemaCRUD.API.Repositorio.Cidade
             return cidade;
         }
 
-        public async Task Update(CidadeModel cidade)
+        public async Task<IEnumerable<CidadeModel>> SelectIdEstado(int id)
         {
-            var cidadeSemUpdate =await  _commands.SelectId(cidade.IdCidade);
-            if(cidadeSemUpdate.Nome != cidade.Nome)
-            {
-                await _commands.Update(cidade.IdCidade, "Nome", cidade.Nome);
-            }
-            if (cidadeSemUpdate.Estado.IdEstado != cidade.Estado.IdEstado)
-            {
-                await _commands.Update(cidade.IdCidade, "id_Estado", cidade.Estado.IdEstado.ToString());
-            }
+            
+            return await _commands.SelectIdEstado(id);
         }
     }
 }

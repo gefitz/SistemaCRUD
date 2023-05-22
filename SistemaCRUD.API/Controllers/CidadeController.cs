@@ -14,37 +14,20 @@ namespace SistemaCRUD.API.Controllers
         {
             _service = service;
         }
-        [HttpPost]
-        public async Task<IActionResult> Insert(CidadeDTO cidade)
-        {
-            if (cidade is null)
-                return BadRequest("Favor Inserir as informaçoes");
-            await _service.Insert(cidade);
-            return Ok();
-        }
         [HttpGet]
-        public async Task<IEnumerable<CidadeDTO>> SelectAll()
+        public async Task<IEnumerable<CidadeDTO>> SelectAll(int id)
         {
-            return await _service.SelectAll();
+            return await _service.SelectAll(id);
         }
         [HttpGet("{id}")]
         public async Task<CidadeDTO> SelectId(int id)
         {
             return await _service.SelectById(id);
         }
-        [HttpPut]
-        public async Task<IActionResult> Updade(CidadeDTO cidade)
+        [HttpGet("IdEstado{id}")]
+        public async Task<IEnumerable<CidadeDTO>> SelectIdEstado(int id)
         {
-            if (cidade is null)
-                return BadRequest("Favor Inserin as informações");
-            await _service.Update(cidade);
-            return Ok();
-        }
-        [HttpDelete]
-        public async Task<IActionResult>Delete(int id)
-        {
-            await _service.Delete(id);
-            return Ok();
+            return await _service.SelectIdEstado(id);
         }
     }
 }

@@ -1,0 +1,164 @@
+﻿@model EmpresaModel
+@{
+    ViewBag.Title = "Cadastramento";
+    //    IEnumerable<EstadoDTO> estados = ViewBag.Estados;
+}
+<h2>@ViewBag.Title</h2>
+<div id="form-Cadastramento">
+
+    <form asp-action="Cadastrar">
+        <div class="form-horizontal">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @if(Model.IdEmpresa != 0)
+            {
+                <input type="hidden" asp-for="IdEmpresa" />
+            }
+            <div class="form-group">
+                <div class="col-md-5">
+
+                    <label asp-for="CNPJ" class="col-md-2 control-label"></label>
+                    <div class="col-md-5">
+                        <input asp-for="CNPJ" class="form-control" />
+                        <span asp-validation-for="CNPJ" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-md-3">
+
+                        <label asp-for="Razao" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Razao" class="form-control" />
+                            <span asp-validation-for="Razao" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <label asp-for="Fantasia" class="col-md-2 control-label"></label>
+                        <div class="col-md-7">
+                            <input asp-for="Fantasia" class="form-control" />
+                            <span asp-validation-for="Fantasia" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-md-1">
+
+                        <label asp-for="DDD" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="DDD" class="form-control" />
+                            <span asp-validation-for="DDD" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-5">
+
+                        <label asp-for="Telefone" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Telefone" class="form-control" />
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-md-3">
+                        <label asp-for="CEP" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="CEP" class="form-control" />
+                            <span asp-validation-for="CEP" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <label asp-for="Rua" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Rua" class="form-control" />
+                            <span asp-validation-for="Rua" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-md-3">
+                        <label asp-for="Bairro" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Bairro" class="form-control" />
+                            <span asp-validation-for="Bairro" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+
+                        <label asp-for="Numero" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Numero" class="form-control" />
+                            <span asp-validation-for="Numero" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <label asp-for="Complemento" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Complemento" class="form-control" />
+                            <span asp-validation-for="Complemento" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="IdEstado" class="col-md-2 control-label">Estado</label>
+                            <div class="col-md-10">
+                                <select asp-for="IdEstado" asp-items="@ViewBag.Estados" class="form-select" onclick="GetCidades(this.value)">
+                                </select>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <div id="CidadeForm" class="form-group">
+                            <label asp-for="IdCidade" class="col-md-2 control-label">Cidade</label>
+                            <div class="col-md-10">
+                                <select id="SelectCidade" asp-for="IdCidade" asp-items="@ViewBag.Cidades" class="form-select">
+                                </select>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="padding-top: 10px">
+                <div class="col-md-offset-2 col-md-10">
+                    @if (Model.IdEmpresa != 0)
+                    {
+                        <input type="submit" asp-action="Update" value="Salvar" class="btn btn-outline-success" />
+                    }
+                    else
+                    {
+
+                        <input type="submit" value="Cadastrar" class="btn btn-outline-success" />
+                    }
+                    <a asp-action="Index" class="btn btn-outline-primary">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="~/js/Estado.js" asp-append-version="true"></script>

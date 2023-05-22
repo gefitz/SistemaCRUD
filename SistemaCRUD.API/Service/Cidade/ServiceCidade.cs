@@ -17,21 +17,10 @@ namespace SistemaCRUD.API.Service.Cidade
             _mapper = mapper;
         }
 
-        public async Task Delete(int id)
-        {
-            await _repositorio.Delete(id);
-        }
 
-        public async Task<bool> Insert(CidadeDTO cidade)
+        public async Task<IEnumerable<CidadeDTO>> SelectAll(int id)
         {
-            var cidadeModel = _mapper.Map<CidadeModel>(cidade);
-            await _repositorio.Insert(cidadeModel);
-            return true;
-        }
-
-        public async Task<IEnumerable<CidadeDTO>> SelectAll()
-        {
-            return _mapper.Map<IEnumerable<CidadeDTO>>(await _repositorio.SelectAll());
+            return _mapper.Map<IEnumerable<CidadeDTO>>(await _repositorio.SelectAll(id));
         }
 
         public async Task<CidadeDTO> SelectById(int id)
@@ -39,9 +28,9 @@ namespace SistemaCRUD.API.Service.Cidade
             return _mapper.Map<CidadeDTO>(await _repositorio.SelectId(id));
         }
 
-        public async Task Update(CidadeDTO cidade)
+        public async Task<IEnumerable<CidadeDTO>> SelectIdEstado(int id)
         {
-            await _repositorio.Update(_mapper.Map<CidadeModel>(cidade));
+            return _mapper.Map<IEnumerable<CidadeDTO>>(await _repositorio.SelectIdEstado(id));
         }
     }
 }

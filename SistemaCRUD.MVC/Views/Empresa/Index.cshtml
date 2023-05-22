@@ -1,0 +1,77 @@
+﻿@model IEnumerable<EmpresaModel>;
+@{
+    ViewBag.Title = "FORNECEDORES";
+}
+<h2 class="h2">@ViewBag.Title</h2>
+<hr/>
+<a asp-controller="Empresa" asp-action="Cadastrar" class="btn btn-cadastrar">Cadastrar</a>
+
+    <table class="table table-bordered border">
+        <thead>
+            <tr>
+                <th>CNPJ</th>
+                <th>Razão</th>
+                <th>Fantasia</th>
+                <th>Telefone</th>
+                <th>Rua</th>
+                <th>Bairro</th>
+                <th>Complemento</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (EmpresaModel item in Model)
+            {
+                <tr>
+                    <td scope="row">@item.CNPJ</td>
+                    <td>@item.Razao</td>
+                    <td>@item.Fantasia</td>
+                    <td>(@item.DDD)@item.Telefone</td>
+                    <td>@item.Rua,@item.Numero</td>
+                    <td>@item.Bairro</td>
+                    <td>@item.Complemento</td>
+                    <td>@item.Cidade.Nome</td>
+                    <td>@item.Cidade.Estado.Nome</td>
+                    <td>
+                        <a asp-action="Cadastrar" asp-route-id="@item.IdEmpresa" class="btn btn-outline-warning">
+                            <i>
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </i>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger delete" onclick="Delete(@item.IdEmpresa)">
+                            <i>
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </i>
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLongTitle">Deletar</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong>Deseja remover a esse Fornecedor </strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger">Remover</button>
+                </div>
+            </div>
+        </div>
+    </div>
