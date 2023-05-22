@@ -43,19 +43,22 @@ namespace SistemaCRUD.API.Data.Empresa
                 $"'{empresa.Fantasia}'," +
                 $"{empresa.DDD}," +
                 $"{empresa.Telefone}," +
+                $"'{empresa.CEP}',"+
                 $"'{empresa.Rua}'," +
                 $"{empresa.Numero}," +
                 $"'{empresa.Bairro}'," +
-                $"{empresa.Cidade.IdCidade},";
+                $"'{empresa.Complemento}',"+
+                $"{empresa.IdCidade}," +
+                $"{empresa.IdEstado});";
             #endregion
 
-            using(var conn = _connection.Open())
+            using (var conn = _connection.Open())
             {
                 var cmd = new SqlCommand(queryInsert, conn);
                 try
                 {
                     await cmd.ExecuteReaderAsync();
-                    
+
                 }
                 catch (Exception)
                 {
@@ -78,7 +81,7 @@ namespace SistemaCRUD.API.Data.Empresa
                 {
                     var read = await cmd.ExecuteReaderAsync();
                     List<EmpresaModel> empresas = new List<EmpresaModel>();
-                    while(await read.ReadAsync())
+                    while (await read.ReadAsync())
                     {
                         EmpresaModel emprea = new EmpresaModel
                         {
@@ -91,7 +94,9 @@ namespace SistemaCRUD.API.Data.Empresa
                             Rua = read["Rua"].ToString(),
                             Bairro = read["Bairro"].ToString(),
                             Numero = Convert.ToInt32(read["Numero"]),
-                            Cidade = new CidadeModel { IdCidade = Convert.ToInt32(read["id_Cidade"])},
+                            CEP = read["Cep"].ToString(),
+                            Cidade = new CidadeModel { IdCidade = Convert.ToInt32(read["id_Cidade"]) },
+                            Complemento = read["Complemento"].ToString(),
                         };
                         empresas.Add(emprea);
                     }
@@ -110,14 +115,14 @@ namespace SistemaCRUD.API.Data.Empresa
             #region querySelectId
             string querySelectId = $"use SistemCRUD;select * from tbl_Empresas where id_Empresa = {id}";
             #endregion 
-            using(var conn = _connection.Open())
+            using (var conn = _connection.Open())
             {
                 var cmd = new SqlCommand(querySelectId, conn);
                 try
                 {
                     EmpresaModel empresa = new EmpresaModel();
                     var read = await cmd.ExecuteReaderAsync();
-                    while(await read.ReadAsync())
+                    while (await read.ReadAsync())
                     {
                         empresa = new EmpresaModel
                         {
@@ -131,6 +136,9 @@ namespace SistemaCRUD.API.Data.Empresa
                             Bairro = read["Bairro"].ToString(),
                             Numero = Convert.ToInt32(read["Numero"]),
                             Cidade = new CidadeModel { IdCidade = Convert.ToInt32(read["id_Cidade"]) },
+                            CEP = read["CEP"].ToString(),
+                            Complemento = read["Complemento"].ToString(),
+
                         };
                     }
                     return empresa;
@@ -147,17 +155,17 @@ namespace SistemaCRUD.API.Data.Empresa
         {
             #region QueryUpdate
             string queryUpdate = "";
-            if (tipoColuna.BaseType is String)
+            if (tipoColuna.Name is String)
             {
                 queryUpdate = $"use SistemCRUD; Update tbl_Empresas set {coluna} = '{modificacao.ToString()}' where id_Empresa = {id}";
             }
-            else if(tipoColuna.Name is "Int32")
+            else if (tipoColuna.Name is "Int32")
             {
                 queryUpdate = $"use SistemCRUD; Update tbl_Empresas set {coluna} = {Convert.ToInt32(modificacao)} where id_Empresa = {id}";
             }
             #endregion
 
-            using(var conn = _connection.Open())
+            using (var conn = _connection.Open())
             {
                 var cmd = new SqlCommand(queryUpdate, conn);
                 try

@@ -56,10 +56,10 @@ namespace SistemaCRUD.API.Data.Cidade
             }
         }
 
-        public async Task<IEnumerable<CidadeModel>> SelectAll()
+        public async Task<IEnumerable<CidadeModel>> SelectAll(int id)
         {
             #region querySelectAll
-            string querySelect = "use SistemCRUD; Select * From tbl_Cidades";
+            string querySelect = $"use SistemCRUD; Select * From tbl_Cidades where id_Estado = {id}";
             #endregion
             using(var conn = _connection.Open())
             {
@@ -109,6 +109,11 @@ namespace SistemaCRUD.API.Data.Cidade
                     throw;
                 }
             }
+        }
+
+        public Task<IEnumerable<CidadeModel>> SelectIdEstado(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Update(int id, string coluna, string valor)

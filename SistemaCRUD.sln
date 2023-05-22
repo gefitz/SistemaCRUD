@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCRUD.API", "SistemaCRUD.API\SistemaCRUD.API.csproj", "{97D24F41-C231-4EAE-9538-32084FE2DE56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaCRUD.API", "SistemaCRUD.API\SistemaCRUD.API.csproj", "{97D24F41-C231-4EAE-9538-32084FE2DE56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCRUD.MVC", "SistemaCRUD.MVC\SistemaCRUD.MVC.csproj", "{96FDEB21-20B5-47AF-B373-AFA679A06873}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{97D24F41-C231-4EAE-9538-32084FE2DE56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97D24F41-C231-4EAE-9538-32084FE2DE56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97D24F41-C231-4EAE-9538-32084FE2DE56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96FDEB21-20B5-47AF-B373-AFA679A06873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FDEB21-20B5-47AF-B373-AFA679A06873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FDEB21-20B5-47AF-B373-AFA679A06873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96FDEB21-20B5-47AF-B373-AFA679A06873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

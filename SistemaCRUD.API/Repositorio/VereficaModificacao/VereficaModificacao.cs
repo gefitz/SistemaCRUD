@@ -7,117 +7,139 @@ namespace SistemaCRUD.API.Repositorio.VereficaModificacao
     {
         public EmpresaModel empresaSemUpdate { get; set; }
         public ProdutoModel produtoSemUpdate { get; set; }
-        public Type tipoColuna { get; set; }
-        public object modificacao;
-        public string VereficaEmpresa(EmpresaModel empresa)
+        public List<Type> tipoColuna;
+
+        public List<object> modificacao;
+        public List<string> coluna;
+
+        public VereficaModificacao()
+        {
+            this.tipoColuna = new List<Type>();
+            this.modificacao = new List<object>();
+            this.coluna = new List<string>();
+        }
+
+        public void VereficaEmpresa(EmpresaModel empresa)
         {
             if (empresa.Razao != empresaSemUpdate.Razao)
             {
-                modificacao = empresa.Razao;
-                tipoColuna = empresa.Razao.GetType();
-                return new string("Razao");
+                modificacao.Add(empresa.Razao);
+                tipoColuna.Add(empresa.Razao.GetType());
+                coluna.Add("Razao");
             }
             if (empresa.Fantasia != empresaSemUpdate.Fantasia)
             {
-                modificacao = empresa.Fantasia;
-                tipoColuna = empresa.Fantasia.GetType();
-                return new string("Fantasia");
+                modificacao.Add(empresa.Fantasia);
+                tipoColuna.Add(empresa.Fantasia.GetType());
+                coluna.Add("Fantasia");
             }
 
             if (empresa.CNPJ != empresaSemUpdate.CNPJ)
             {
-                modificacao = empresa.CNPJ;
-                tipoColuna = empresa.CNPJ.GetType();
-                return new string("CNPJ");
+                modificacao.Add(empresa.CNPJ);
+                tipoColuna.Add(empresa.CNPJ.GetType());
+                coluna.Add("CNPJ");
             }
             if (empresa.Rua != empresaSemUpdate.Rua)
             {
-                modificacao = empresa.Rua;
-                tipoColuna = empresa.Rua.GetType();
-                return new string("Rua");
+                modificacao.Add(empresa.Rua);
+                tipoColuna.Add(empresa.Rua.GetType());
+                coluna.Add("Rua");
             }
             if (empresa.Bairro != empresaSemUpdate.Bairro)
             {
-                modificacao = empresa.Bairro;
-                tipoColuna = empresa.Bairro.GetType();
-                return new string("Bairro");
+                modificacao.Add(empresa.Bairro);
+                tipoColuna.Add(empresa.Bairro.GetType());
+                coluna.Add("Bairro");
             }
             if (empresa.Numero != empresaSemUpdate.Numero)
             {
-                modificacao = empresa.Numero;
-                tipoColuna = empresa.Numero.GetType();
-                return new string("Numero");
+                modificacao.Add(empresa.Numero);
+                tipoColuna.Add(empresa.Numero.GetType());
+                coluna.Add("Numero");
             }
 
             if (empresa.DDD != empresaSemUpdate.DDD)
             {
-                modificacao = empresa.DDD;
-                tipoColuna = empresa.DDD.GetType();
-                return new string("DDD");
+                modificacao.Add(empresa.DDD);
+                tipoColuna.Add(empresa.DDD.GetType());
+                coluna.Add("DDD");
             }
 
             if (empresa.Telefone != empresaSemUpdate.Telefone)
             {
-                modificacao = empresa.Telefone;
-                tipoColuna = empresa.GetType();
-                return new string("Telefone");
+                modificacao.Add(empresa.Telefone);
+                tipoColuna.Add(empresa.Telefone.GetType());
+                coluna.Add("Telefone");
             }
-            return null;
+
+            if (empresa.Complemento != empresaSemUpdate.Complemento)
+            {
+                modificacao.Add(empresa.Complemento);
+                tipoColuna.Add(empresa.Complemento.GetType());
+                coluna.Add("Complemento");
+            }
+            if (empresa.CEP != empresaSemUpdate.CEP)
+            {
+                modificacao.Add(empresa.CEP);
+                tipoColuna.Add(empresa.CEP.GetType());
+                coluna.Add("CEP");
+            }
+
         }
-        public string VereficaProduto(ProdutoModel produto)
+        public void VereficaProduto(ProdutoModel produto)
         {
             if (produto.Nome != produtoSemUpdate.Nome)
             {
-                modificacao = produto.Nome;
-                tipoColuna = produto.Nome.GetType();
-                return new string("Nome");
+                modificacao.Add(produto.Nome);
+                tipoColuna.Add(produto.Nome.GetType());
+                coluna.Add("Nome");
             }
             if (produto.Descricao != produtoSemUpdate.Descricao)
             {
-                modificacao = produto.Descricao;
-                tipoColuna = produto.Descricao.GetType();
-                return new string("Descricao");
+                modificacao.Add(produto.Descricao);
+                tipoColuna.Add(produto.Descricao.GetType());
+                coluna.Add("Descricao");
             }
 
             if (produto.Custo != produtoSemUpdate.Custo)
             {
-                modificacao = produto.Custo;
-                tipoColuna = produto.Custo.GetType();
-                return new string("Custo");
+                modificacao.Add(produto.Custo);
+                tipoColuna.Add(produto.Custo.GetType());
+                coluna.Add("Custo");
             }
             if (produto.Preco != produtoSemUpdate.Preco)
             {
-                modificacao = produto.Preco;
-                tipoColuna = produto.Preco.GetType();
-                return new string("Preco");
+                modificacao.Add(produto.Preco);
+                tipoColuna.Add(produto.Preco.GetType());
+                coluna.Add("Preco");
             }
             if (produto.Porcetagem != produtoSemUpdate.Porcetagem)
             {
-                modificacao = produto.Porcetagem;
-                tipoColuna = produto.Porcetagem.GetType();
-                return new string("Porcetagem");
+                modificacao.Add(produto.Porcetagem);
+                tipoColuna.Add(produto.Porcetagem.GetType());
+                coluna.Add("Porcetagem");
             }
             if (produto.Quantidade != produtoSemUpdate.Quantidade)
             {
-                modificacao = produto.Quantidade;
-                tipoColuna = produto.Quantidade.GetType();
-                return new string("Quantidade");
+                modificacao.Add(produto.Quantidade);
+                tipoColuna.Add(produto.Quantidade.GetType());
+                coluna.Add("Quantidade");
             }
 
             if (produto.Empresa.IdEmpresa != produtoSemUpdate.Empresa.IdEmpresa)
             {
-                modificacao = produto.Empresa.IdEmpresa;
-                tipoColuna = produto.Empresa.IdEmpresa.GetType();
-                return new string("id_Empresa");
+                modificacao.Add(produto.Empresa.IdEmpresa);
+                tipoColuna.Add(produto.Empresa.IdEmpresa.GetType());
+                coluna.Add("id_Empresa");
             }
 
             if (produto.Tipo.IdTipo != produtoSemUpdate.Tipo.IdTipo)
             {
-                modificacao = produto.Tipo.IdTipo;
-                tipoColuna = produto.Tipo.IdTipo.GetType();
-                return new string("id_Tipo");
-            }
-            return null;
+                modificacao.Add(produto.Tipo.IdTipo);
+                tipoColuna.Add(produto.Tipo.IdTipo.GetType());
+                coluna.Add("id_Tipo");
+            }   
         }
     }
 }

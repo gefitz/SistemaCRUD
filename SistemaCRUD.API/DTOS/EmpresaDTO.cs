@@ -1,4 +1,6 @@
-﻿namespace SistemaCRUD.API.DTOS
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SistemaCRUD.API.DTOS
 {
     public class EmpresaDTO
     {
@@ -13,6 +15,11 @@
         public string Bairro { get; set; }
         public int Numero { get; set; }
         public string Complemento { get; set; }
-        public CidadeDTO Cidade { get; set; }
+        public EstadoDTO? Estado { get; set; }
+        public CidadeDTO? Cidade { get; set; }
+        [Required]
+        public int IdCidade { get; set; }
+        [Required]
+        public int IdEstado { get; set; }
     }
 }

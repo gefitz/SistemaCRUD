@@ -61,6 +61,10 @@ builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
 
 #endregion
 
+#region CORS
+builder.Services.AddCors();
+#endregion
+
 // Add services to the container.
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
@@ -79,6 +83,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyOrigin();
+    c.AllowAnyMethod();
+});
 
 app.UseAuthorization();
 

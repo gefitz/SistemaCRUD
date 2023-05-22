@@ -14,5 +14,8 @@
         public string Bairro { get; set; }
         public string Complemento { get; set; }
         public CidadeModel Cidade { get; set; }
+        public EstadoModel Estado { get; set; }
+        public int IdCidade { get; set; }
+        public int IdEstado { get; set; }
     }
 }
